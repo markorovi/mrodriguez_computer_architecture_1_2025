@@ -1,13 +1,6 @@
-ASSEMBLY
-AVERIGUAR COMO CORRER ASSEMBLY
-TESTEAR LECTURA CORRECTA MEMORIA
-TESTEAR OUTPUTS
-
-(NEW) GUARDAR IMAGENES EN FORMATO QUE ASSEMBLY LEA
-(NEW) GUARDAR IMAGEN MODIFICADA PARA MOSTRAR EN PANTALLA
-(NEW)*** GUARDAR SOLO EL *SECTOR* DE LA IMAGEN A MODIFICAR
+Generar una sola interfaz que incorpore todo funcional
 ...
 
 BUGS:
-COMPROBAR LINEA 49 manejoImagenes.py
+Sigo con la duda de si en verdad se hace la mate en el assembly como se debe
 ...
