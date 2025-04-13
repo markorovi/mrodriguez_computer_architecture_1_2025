@@ -1,4 +1,4 @@
-Generar una sola interfaz que incorpore todo funcional
+Limpiar codigo
 ...
 
 BUGS:

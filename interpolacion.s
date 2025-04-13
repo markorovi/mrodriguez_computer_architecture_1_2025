@@ -1,6 +1,6 @@
 section .data
     input_file  db "sector.txt", 0
-    output_file db "test.bin", 0
+    output_file db "test.img", 0
     create_flags equ 0x42        ; O_CREAT|O_WRONLY|O_TRUNC
     create_mode  equ 0644o       ; rw-r--r--
     
