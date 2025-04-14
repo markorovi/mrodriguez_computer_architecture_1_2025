@@ -11,20 +11,20 @@ section .data
     SYS_EXIT    equ 60
     
     MATRIX_SIZE     equ 100
-    OUTPUT_SIZE     equ 200      ; Tamaño matriz interpolada (2x)
+    OUTPUT_SIZE     equ 200      ; Tamaño matriz de las matrices
 
 section .bss
     input_matrix    resb MATRIX_SIZE * MATRIX_SIZE
     output_matrix   resb OUTPUT_SIZE * OUTPUT_SIZE
     input_fd        resq 1
     output_fd       resq 1
-    buffer          resb 30000   ; Buffer para lectura
+    buffer          resb 30000   ; Buffer 
 
 section .text
     global _start
 
 _start:
-    ; Abrir archivo de entrada
+    ; Abrir archivo 
     mov rax, SYS_OPEN
     lea rdi, [rel input_file]
     mov rsi, 0              ; O_RDONLY
@@ -33,7 +33,7 @@ _start:
     jl exit_error
     mov [rel input_fd], rax
 
-    ; Leer todo el archivo
+    ; Leer archivo
     mov rax, SYS_READ
     mov rdi, [rel input_fd]
     lea rsi, [rel buffer]
@@ -42,12 +42,12 @@ _start:
     cmp rax, 0
     jle exit_error
 
-    ; Cerrar archivo de entrada
+    ; Cerrar archivo
     mov rax, SYS_CLOSE
     mov rdi, [rel input_fd]
     syscall
 
-    ; Procesar datos y llenar matriz de entrada
+    ; Procesar datos y llenar matriz 
     lea rsi, [rel buffer]     ; Puntero a datos
     lea rdi, [rel input_matrix] ; Puntero a matriz
     mov rcx, MATRIX_SIZE * MATRIX_SIZE
@@ -58,7 +58,7 @@ process_hex:
     mov al, [rsi]
     inc rsi
     
-    ; Ignorar caracteres no válidos
+    ; Esto ignora todo lo que no sea HEX
     cmp al, ' '
     je process_hex
     cmp al, 9               ; Tab
@@ -83,12 +83,12 @@ process_hex:
     mov [rdi], al
     inc rdi
     
-    ; Verificar si completamos la matriz
+    ; Matriz llena?
     inc rbx
     cmp rbx, MATRIX_SIZE * MATRIX_SIZE
     jl process_hex
 
-    ; Aplicar interpolación
+    ; Interpolación
     call interpolate_matrix
 
     ; Crear archivo binario de salida
@@ -133,7 +133,10 @@ ascii_to_nibble:
     sub al, '0'
     ret
 
-; ---- Rutina de interpolación ----
+
+
+
+; ---- ACA ESTA TODO LO REFERENTE A LA MATE DE INTERPOLACION ----
 interpolate_matrix:
     ; Utilizamos:
     ; r8, r9 - Para coordenadas y cálculos de índices

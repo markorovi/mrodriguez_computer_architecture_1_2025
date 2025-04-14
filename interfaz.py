@@ -22,7 +22,6 @@ class ImageQuadrantSelector:
         self.greyscale_image = None
         self.interpolated_image = None
 
-        # Frame para botones
         btn_frame = tk.Frame(root)
         btn_frame.pack(pady=10)
 
@@ -43,13 +42,13 @@ class ImageQuadrantSelector:
             ("Todos los archivos", "*.*")
         ])
         if path:
-            # Cargar la imagen original
+            # Cargar imagen 
             img = Image.open(path).convert("RGB")
             img = img.resize((400, 400))
             self.original_pil_image = img
             self.image = ImageTk.PhotoImage(img)
 
-            # Cargar también la imagen en escala de grises para manejoImagenes
+            # Cargar en escala de grises para manejoImagenes
             self.greyscale_image = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
             if self.greyscale_image is not None:
                 self.greyscale_image = cv2.resize(self.greyscale_image, (400, 400))
@@ -62,19 +61,19 @@ class ImageQuadrantSelector:
     def actualizar_canvas(self):
         self.canvas.delete("all")
         
-        # Mostrar imagen original con cuadrícula
+        # cuadrícula
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.image)
         
-        # Dibujar cuadrícula 4x4
+        # Dibujar cuadrícula
         for i in range(1, 4):
             self.canvas.create_line(i * 100, 0, i * 100, 400, fill="red")
             self.canvas.create_line(0, i * 100, 400, i * 100, fill="red")
 
-        # Área de cuadrante seleccionado
+        # cuadrante seleccionado
         self.canvas.create_text(420, 50, text="Cuadrante seleccionado:", anchor=tk.NW)
         self.canvas.create_rectangle(420, 80, 620, 280, outline="blue", width=2)
 
-        # Mostrar cuadrante seleccionado si existe
+        # Mostrar cuadrante 
         if self.selected_quadrant_image:
             quadrant_x = 420 + (200 - 100) // 2  
             quadrant_y = 80 + (200 - 100) // 2   
@@ -84,7 +83,7 @@ class ImageQuadrantSelector:
         self.canvas.create_text(640, 50, text="Área de interpolación:", anchor=tk.NW)
         self.canvas.create_rectangle(640, 80, 840, 280, outline="green", width=2)
 
-        # Mostrar imagen interpolada si existe
+        # Mostrar imagen interpolad
         if self.interpolated_image:
             interp_x = 640 + (200 - 200) // 2  # Centrar la imagen de 200x200
             interp_y = 80 + (200 - 200) // 2
@@ -137,7 +136,7 @@ class ImageQuadrantSelector:
             return
 
         try:
-            # Ejecutar el programa de interpolación en ensamblador
+            # Ejecutar el programa de ensamblador
             result = subprocess.run(['./interpolacion'], capture_output=True, text=True)
             
             if result.returncode != 0:
