@@ -85,11 +85,6 @@ nasm -f elf64 -F dwarf -g interpolacion.s -o interpolacion.o
 ld interpolacion.o -o interpolacion
 ```
 
-Una vez compilado, ejecuta el programa:
-
-```bash
-./interpolacion
-```
 
 ---
 
@@ -105,9 +100,8 @@ python3 interfaz.py
 
 ## Flujo de Uso
 
-1. Compilar el código ensamblador usando `nasm` y `ld`.
-2. Ejecutar el binario ensamblador (`./interpolacion`) si se requiere procesamiento previo.
-3. Ejecutar la interfaz con:
+1. Compilar el código ensamblador usando `nasm` y `ld` (Este paso solo es necesario si no se cuenta con el ejecutable ya compilado).
+2. Ejecutar la interfaz con:
 
 ```bash
 python3 interfaz.py
@@ -115,25 +109,6 @@ python3 interfaz.py
 
 ---
 
-## Nota
-
-Asegúrate de tener los permisos adecuados para ejecutar archivos binarios en tu carpeta de trabajo:
-
-```bash
-chmod +x interpolacion
-```
-
----
-
-## Dependencias
-
-- Python 3.x
-- OpenCV
-- Pillow
-- Tkinter
-- NASM (Netwide Assembler)
-
----
 
 
 
